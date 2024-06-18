@@ -1,12 +1,13 @@
-
+{
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://finaltest-api.vercel.app/api/v1/users"
+      "destination": "https://finaltest-api.vercel.app"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
+}
 
