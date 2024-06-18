@@ -1,8 +1,8 @@
-{
+
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://finaltest-api.vercel.app/api/$1"
+      "destination": "https://finaltest-api.vercel.app/api/v1/users"
     },
     {
       "source": "/(.*)",
