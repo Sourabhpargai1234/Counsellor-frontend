@@ -29,7 +29,7 @@ export default function Aipage(){
 
     try {
       console.log('Sending data:', data);
-      const response = await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/users/qa`, data);
+      const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/qa', data);
       console.log('Response:', response);
       document.getElementById('answer').innerText = response.data.answer;
     } catch (error) {
@@ -49,7 +49,7 @@ export default function Aipage(){
 
     try {
       console.log('Sending data:', data);
-      const response = await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/users/llm`, data);
+      const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/llm', data);
       console.log('Response:', response);
       setUserAsked(question2);
       document.getElementById("userasked").innerText="data";

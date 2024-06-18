@@ -56,7 +56,7 @@ export default function Registerpage() {
             return ;
         }
         axios
-        .post(`${import.meta.env.VITE_API_KEY}/api/v1/users/register`, data)
+        .post('https://finaltest-api.vercel.app/api/v1/users/register', data)
         .then(() => {
           e.preventDefault()
           enqueueSnackbar('User registered successfully', { variant: 'success' });
