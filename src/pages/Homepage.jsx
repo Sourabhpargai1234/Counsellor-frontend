@@ -3,7 +3,7 @@ import TextTransition, { presets } from 'react-text-transition';
 import { IoReorderThreeSharp } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import './index.css'
-import { FaBrain, FaChartLine, FaHandsHelping } from 'react-icons/fa';
+import { FaBrain, FaHandsHelping } from 'react-icons/fa';
 
 
 function Homepage() {
