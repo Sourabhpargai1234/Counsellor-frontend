@@ -14,7 +14,7 @@ export default function ProtectedRoute() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('/api/v1/users/profile', { withCredentials: true });
+        const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile', { withCredentials: true });
         if (response) {
           setIsAuthenticated(true);
           navigate('/ai')
