@@ -9,7 +9,7 @@ export default function Aipage(){
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [question2, setQuestion2] = useState('');3
+  const [question2, setQuestion2] = useState('');
   const [userAsked, setUserAsked] = useState('Hi there! I have a question about Career.');
 
   const navigate = useNavigate()
@@ -29,7 +29,7 @@ export default function Aipage(){
 
     try {
       console.log('Sending data:', data);
-      const response = await axios.post('/api/v1/users/qa', data);
+      const response = await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/users/qa`, data);
       console.log('Response:', response);
       document.getElementById('answer').innerText = response.data.answer;
     } catch (error) {
@@ -49,7 +49,7 @@ export default function Aipage(){
 
     try {
       console.log('Sending data:', data);
-      const response = await axios.post('/api/v1/users/llm', data);
+      const response = await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/users/llm`, data);
       console.log('Response:', response);
       setUserAsked(question2);
       document.getElementById("userasked").innerText="data";

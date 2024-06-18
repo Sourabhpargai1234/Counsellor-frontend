@@ -26,7 +26,7 @@ export default function Loginpage() {
             return;
         }
         try {
-          await axios.post('/api/v1/users/login', data);
+          await axios.post(`${import.meta.env.VITE_API_KEY}/api/v1/users/login`, data);
           enqueueSnackbar('Logged-In successfully', { variant: 'success' });
           navigate('/ai'); // Navigate to the protected page
         } catch (error) {

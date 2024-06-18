@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
-export default function Registerpage() {
 
+export default function Registerpage() {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar()
   /*  const [loading, setLoading] = useState(true);
@@ -56,7 +56,7 @@ export default function Registerpage() {
             return ;
         }
         axios
-        .post('/api/v1/users/register', data)
+        .post(`${import.meta.env.VITE_API_KEY}/api/v1/users/register`, data)
         .then(() => {
           e.preventDefault()
           enqueueSnackbar('User registered successfully', { variant: 'success' });
