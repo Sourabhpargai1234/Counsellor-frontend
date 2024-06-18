@@ -1,0 +1,7 @@
+.toggle__dot {
+    transition: transform 0.3s ease;
+}
+
+.toggle__dot--checked {
+    transform: translateX(100%);
+}
