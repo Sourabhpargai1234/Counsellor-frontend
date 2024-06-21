@@ -60,7 +60,7 @@ export default function Registerpage() {
         .then(() => {
           e.preventDefault()
           enqueueSnackbar('User registered successfully', { variant: 'success' });
-          navigate('/');
+          navigate('/login');
         })
         .catch((error) => {
           enqueueSnackbar("User registered with same username or email", { variant: 'error' });
