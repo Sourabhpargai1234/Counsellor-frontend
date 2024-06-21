@@ -25,7 +25,7 @@ export default function Loginpage() {
         }
 
         try {
-            const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/login', data);
+            const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/login', data,{ withCredentials: true });
             enqueueSnackbar(`${response.data.statusCode}: ${response.data.message}`, { variant: 'success' });
             navigate('/ai'); // Navigate to the protected page
         } catch (error) {
