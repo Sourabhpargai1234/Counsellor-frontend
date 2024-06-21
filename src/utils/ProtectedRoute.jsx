@@ -15,10 +15,8 @@ export default function ProtectedRoute() {
     const fetchUserData = async () => {
       try {
         const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile', { withCredentials: true });
-        console.log('Token received:', response.data.refreshToken);
         if (response) {
           setIsAuthenticated(true);
-          navigate('/ai')
           enqueueSnackbar(`${response.data.statusCode}:${response.data.message}`, { variant: 'info' });
         }
       } catch (error) {
