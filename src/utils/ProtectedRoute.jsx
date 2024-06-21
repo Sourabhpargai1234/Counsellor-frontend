@@ -18,12 +18,16 @@ export default function ProtectedRoute() {
         if (response) {
           setIsAuthenticated(true);
           navigate('/ai')
+          enqueueSnackbar(`${response.data.statusCode}:${response.data.message}`, { variant: 'info' });
         }
       } catch (error) {
-        enqueueSnackbar('Register or Login first', { variant: 'info' });
-        navigate('/register');
-        setIsAuthenticated(false);
-        console.error('Error fetching user data:', error);
+        if (error.response && error.response.data) {
+          enqueueSnackbar(`${error.response.data.statusCode}: ${error.response.data.message}`, { variant: 'error' });
+      } else {
+          enqueueSnackbar('An unexpected error occurred', { variant: 'error' });
+      }
+      console.error(error);
+      navigate('/register');
       } finally {
         setLoading(false);
       }
