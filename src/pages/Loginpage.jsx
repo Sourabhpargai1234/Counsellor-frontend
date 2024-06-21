@@ -16,24 +16,27 @@ export default function Loginpage() {
 
     const handlelogin = async (e) => {
         e.preventDefault();
-        const data = {
-          username,
-          password,
-        };
+        const data = { username, password };
+
         if (!data.username || !data.password) {
-            navigate('/login')
             enqueueSnackbar('All fields are required', { variant: 'info' });
+            navigate('/login');
             return;
         }
+
         try {
-          await axios.post('https://finaltest-api.vercel.app/api/v1/users/login', data);
-          enqueueSnackbar('Logged-In successfully', { variant: 'success' });
-          navigate('/ai'); // Navigate to the protected page
+            const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/login', data);
+            enqueueSnackbar(`${response.data.statusCode}: ${response.data.message}`, { variant: 'success' });
+            navigate('/ai'); // Navigate to the protected page
         } catch (error) {
-          enqueueSnackbar('Wrong username or password', { variant: 'error' });
-          console.error(error);
+            if (error.response && error.response.data) {
+                enqueueSnackbar(`${error.response.data.statusCode}: ${error.response.data.message}`, { variant: 'error' });
+            } else {
+                enqueueSnackbar('An unexpected error occurred', { variant: 'error' });
+            }
+            console.error(error);
         }
-      };
+    };
 
 
   return (

@@ -55,16 +55,20 @@ export default function Registerpage() {
             enqueueSnackbar('All fields are required', { variant: 'info' });
             return ;
         }
-        axios
+        const response=axios
         .post('https://finaltest-api.vercel.app/api/v1/users/register', data)
         .then(() => {
           e.preventDefault()
-          enqueueSnackbar('User registered successfully', { variant: 'success' });
+          enqueueSnackbar(`${response.data.statusCode}:${response.data.message}`, { variant: 'success' });
           navigate('/login');
         })
         .catch((error) => {
-          enqueueSnackbar("User registered with same username or email", { variant: 'error' });
-          console.error(error);
+          if (error.response && error.response.data) {
+            enqueueSnackbar(`${error.response.data.statusCode}: ${error.response.data.message}`, { variant: 'error' });
+        } else {
+            enqueueSnackbar('An unexpected error occurred', { variant: 'error' });
+        }
+        console.error(error);
         });
       };
 
