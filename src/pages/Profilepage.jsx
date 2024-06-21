@@ -30,20 +30,6 @@ export default function ProfilePage() {
     fetchUserData();
   }, [enqueueSnackbar, navigate]);
 
-  useEffect(() => {
-    const testCors = async () => {
-        try {
-            const response = await axios.get('https://finaltest-api.vercel.app/api/v1/test', { 
-                withCredentials: true 
-            });
-            console.log('Test response:', response);
-        } catch (error) {
-            console.error('Test error:', error);
-        }
-    };
-
-    testCors();
-}, []);
 
   return (
     <div className="bg-slate-300 min-h-screen flex items-center justify-center flex-col bg-gradient-to-r from-green-200 to-green-500">
