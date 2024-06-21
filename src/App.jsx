@@ -7,6 +7,7 @@ import Contactpage from './pages/Contactpage';
 import Registerpage from './pages/Registerpage';
 import Loginpage from './pages/Loginpage';
 import ProtectedRoute from './utils/ProtectedRoute';
+import Editprofile from './pages/Editprofile';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/feedback' element={<Feedbackpage />} />
         <Route path='/contact' element={<Contactpage />} />
         <Route path='/profile' element={<Profilepage />} />
+        <Route path='/edit' element={<Editprofile />} />
         <Route path='/register' element={<Registerpage />} />
         <Route path='/login' element={<Loginpage />} /> 
     </Routes>

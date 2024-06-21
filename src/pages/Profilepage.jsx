@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from "react";
 import { IoMdHome } from "react-icons/io";
+import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
@@ -13,6 +14,11 @@ export default function ProfilePage() {
   const navigateto = (e) => {
       e.preventDefault();
       navigate('/');
+  }
+
+  const toggle = (e) => {
+    e.preventDefault();
+    navigate('/edit');
   }
 
   useEffect(() => {
@@ -37,10 +43,15 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="bg-slate-300 min-h-screen flex items-center justify-center flex-col bg-gradient-to-r from-green-200 to-green-500">
-      <span onClick={navigateto} className='float-right cursor-pointer'>
-        <IoMdHome style={{ color: 'gray', fontSize: '50px' }} />
-      </span>
+    <div className="bg-slate-300 min-h-screen flex justify-center flex-col bg-gradient-to-r from-green-200 to-green-500">
+      <div className='flex justify-evenly'>
+        <span onClick={navigateto} className='float-right cursor-pointer'>
+          <IoMdHome style={{ color: 'gray', fontSize: '50px' }} />
+        </span>
+        <span onClick={toggle} className='float-right cursor-pointer'>
+          <FaUserEdit style={{ color: 'gray', fontSize: '50px' }}/>
+        </span>
+      </div>
       {userData ? (
         <div className="max-w-2xl bg-white shadow-lg rounded-lg overflow-hidden">
           {/* Profile Background Picture */}
