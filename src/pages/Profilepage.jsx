@@ -18,7 +18,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile');
+        const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile',{withCredentials: true});
         setUserData(response.data);
       } catch (error) {
         enqueueSnackbar('User not registered or logged in', { variant: 'info' });
@@ -28,7 +28,7 @@ export default function ProfilePage() {
     };
 
     fetchUserData();
-  }, [enqueueSnackbar, navigate]);
+  }, []);
 
 
   return (
