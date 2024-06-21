@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const Editprofile = () => {
   const [fullName, setFullName] = useState('');
-  const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [message, setMessage] = useState('');
@@ -33,7 +32,8 @@ const Editprofile = () => {
       const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        withCredentials: true
       });
       setMessage(`Profile updated successfully: ${response.data.fullName}`);
     } catch (error) {
@@ -43,28 +43,48 @@ const Editprofile = () => {
   };
 
   return (
-    <div>
-      <h2>Edit User Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Full Name:
-          <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Avatar:
-          <input type="file" name="avatar" onChange={handleFileChange} />
-        </label>
-        <br />
-        <label>
-          Cover Image:
-          <input type="file" name="coverImage" onChange={handleFileChange} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+      <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold mb-4">Edit User Profile</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="fullName" className="block font-semibold">Full Name:</label>
+            <input
+              id="fullName"
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="block w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div>
+            <label htmlFor="avatar" className="block font-semibold">Avatar:</label>
+            <input
+              id="avatar"
+              type="file"
+              name="avatar"
+              onChange={handleFileChange}
+              className="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div>
+            <label htmlFor="coverImage" className="block font-semibold">Cover Image:</label>
+            <input
+              id="coverImage"
+              type="file"
+              name="coverImage"
+              onChange={handleFileChange}
+              className="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+          >
+            Submit
+          </button>
+        </form>
+        {message && <p className="mt-4 text-green-600">{message}</p>}
+      </div>
   );
 };
 
