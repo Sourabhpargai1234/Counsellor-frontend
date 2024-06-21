@@ -18,27 +18,34 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile',{withCredentials: true});
+        const response = await axios.get('https://finaltest-api.vercel.app/api/v1/users/profile', {
+          withCredentials: true
+        });
+
+        console.log('User data fetched successfully:', response.data);
         setUserData(response.data);
+
       } catch (error) {
-        enqueueSnackbar('User not registered or logged in', { variant: 'info' });
-        navigate('/register')
         console.error('Error fetching user data:', error);
+        enqueueSnackbar('User not registered or logged in', { variant: 'info' });
+        navigate('/register');
       }
     };
 
     fetchUserData();
-  }, []);
+  }, [enqueueSnackbar, navigate]);
 
 
   return (
     <div className="bg-slate-300 min-h-screen flex items-center justify-center flex-col bg-gradient-to-r from-green-200 to-green-500">
-      <span onClick={navigateto} className='float-right cursor-pointer'><IoMdHome style={{ color: 'gray', fontSize: '50px' }}/></span>
+      <span onClick={navigateto} className='float-right cursor-pointer'>
+        <IoMdHome style={{ color: 'gray', fontSize: '50px' }} />
+      </span>
       {userData ? (
         <div className="max-w-2xl bg-white shadow-lg rounded-lg overflow-hidden">
           {/* Profile Background Picture */}
-          <img src={userData.coverImage} alt="No coverImage added" className=" text-center w-full h-64 object-cover object-center" />
-          
+          <img src={userData.coverImage} alt="No coverImage added" className="text-center w-full h-64 object-cover object-center" />
+
           <div className="flex items-center p-6">
             {/* Profile Picture */}
             <img
