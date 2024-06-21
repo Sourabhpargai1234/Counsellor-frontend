@@ -42,35 +42,35 @@ export default function Registerpage() {
     }
 
 
-    const handleregister = (e) => {
-        e.preventDefault();
-        const data = {
+
+    const handleregister = async (e) => {
+      e.preventDefault();
+      const data = {
           fullName,
           email,
           username,
           password
-        };
-        if (!data.fullName || !data.email || !data.username || !data.password) {
-            navigate('/register')
-            enqueueSnackbar('All fields are required', { variant: 'info' });
-            return ;
-        }
-        const response=axios
-        .post('https://finaltest-api.vercel.app/api/v1/users/register', data)
-        .then(() => {
-          e.preventDefault()
-          enqueueSnackbar(`${response.data.statusCode}:${response.data.message}`, { variant: 'success' });
-          navigate('/login');
-        })
-        .catch((error) => {
-          if (error.response && error.response.data) {
-            enqueueSnackbar(`${error.response.data.statusCode}: ${error.response.data.message}`, { variant: 'error' });
-        } else {
-            enqueueSnackbar('An unexpected error occurred', { variant: 'error' });
-        }
-        console.error(error);
-        });
       };
+      
+      if (!data.fullName || !data.email || !data.username || !data.password) {
+          enqueueSnackbar('All fields are required', { variant: 'info' });
+          navigate('/register');
+          return;
+      }
+
+      try {
+          const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/register', data);
+          enqueueSnackbar(`${response.data.statusCode}: ${response.data.message}`, { variant: 'success' });
+          navigate('/login');
+      } catch (error) {
+          if (error.response && error.response.data) {
+              enqueueSnackbar(`${error.response.data.statusCode}: ${error.response.data.message}`, { variant: 'error' });
+          } else {
+              enqueueSnackbar('An unexpected error occurred', { variant: 'error' });
+          }
+          console.error(error);
+      }
+  };
 
 
 
