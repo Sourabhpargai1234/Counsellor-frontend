@@ -37,15 +37,15 @@ const Editprofile = () => {
       });
       setMessage(`Profile updated successfully: ${response.data.fullName}`);
     } catch (error) {
-      setMessage('Failed to update profile');
-      console.error('Error updating profile:', error);
+      console.error('Error updating profile:', error.response?.data || error.message);
+      setMessage(`Failed to update profile: ${error.response?.data?.message || error.message}`);
     }
   };
 
   return (
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Edit User Profile</h2>
-        <form onSubmit={handleSubmit} className="space-y-4" enctype="multipart/form-data">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="fullName" className="block font-semibold">Full Name:</label>
             <input
