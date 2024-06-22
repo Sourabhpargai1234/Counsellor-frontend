@@ -29,7 +29,7 @@ const Editprofile = () => {
     }
 
     try {
-      const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
+      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -45,7 +45,7 @@ const Editprofile = () => {
   return (
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Edit User Profile</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" enctype="multipart/form-data">
           <div>
             <label htmlFor="fullName" className="block font-semibold">Full Name:</label>
             <input
