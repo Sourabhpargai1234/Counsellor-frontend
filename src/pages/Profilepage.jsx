@@ -43,7 +43,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="bg-slate-300 min-h-screen flex justify-center flex-col bg-gradient-to-r from-green-200 to-green-500">
+    <div className="bg-slate-300 min-h-screen flex justify-center items-center flex-col bg-gradient-to-r from-green-200 to-green-500">
       <div className='flex justify-evenly'>
         <span onClick={navigateto} className='float-right cursor-pointer'>
           <IoMdHome style={{ color: 'gray', fontSize: '50px' }} />
@@ -53,7 +53,7 @@ export default function ProfilePage() {
         </span>
       </div>
       {userData ? (
-        <div className="max-w-2xl justify-center bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="max-w-2xl bg-white shadow-lg rounded-lg overflow-hidden">
           {/* Profile Background Picture */}
           <img src={userData.data.coverImage} alt="No coverImage added" className="text-center w-full h-64 object-cover object-center" />
 
