@@ -44,7 +44,7 @@ export default function ProfilePage() {
 
   return (
     <div className="bg-slate-300 min-h-screen flex justify-center items-center flex-col bg-gradient-to-r from-green-200 to-green-500">
-      <div className='flex justify-evenly'>
+      <div className='flex justify-between'>
         <span onClick={navigateto} className='float-right cursor-pointer'>
           <IoMdHome style={{ color: 'gray', fontSize: '50px' }} />
         </span>
