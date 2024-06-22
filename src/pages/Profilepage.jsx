@@ -53,7 +53,7 @@ export default function ProfilePage() {
         </span>
       </div>
       {userData ? (
-        <div className="max-w-2xl bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="max-w-2xl justify-center bg-white shadow-lg rounded-lg overflow-hidden">
           {/* Profile Background Picture */}
           <img src={userData.data.coverImage} alt="No coverImage added" className="text-center w-full h-64 object-cover object-center" />
 
@@ -77,7 +77,7 @@ export default function ProfilePage() {
           </div>
         </div>
       ) : (
-        <p className="text-gray-700 text-lg">Loading...</p>
+        <p className="text-gray-700 justify-center items-center font-bold text-4xl">Loading...</p>
       )}
     </div>
   );
