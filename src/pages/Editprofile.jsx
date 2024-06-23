@@ -8,11 +8,10 @@ const Editprofile = () => {
   const [avatar, setAvatar] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [message, setMessage] = useState('');
-  const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const data ={fullName};
 
     const formData = new FormData();
     formData.append('fullName', fullName);
@@ -21,7 +20,7 @@ const Editprofile = () => {
 
 
     try {
-      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', fullName, 
+      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', data, 
         {withCredentials: true},
       );
       console.log('Server Response:', response.data);
