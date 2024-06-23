@@ -19,11 +19,6 @@ const Editprofile = () => {
     formData.append('avatar', avatar);
     formData.append('coverImage', coverImage);
 
-    if (!fullName || !avatar || !coverImage) {
-      enqueueSnackbar('At least one field is required', { variant: 'info' });
-      navigate('/edit');
-      return;
-    }
 
     try {
       const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', fullName, 
