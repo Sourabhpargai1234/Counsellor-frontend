@@ -29,7 +29,7 @@ const Editprofile = () => {
     }
 
     try {
-      const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
+      const response = await axios.get().post('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
