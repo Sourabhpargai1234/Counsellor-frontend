@@ -26,7 +26,12 @@ const Editprofile = () => {
     }
 
     try {
-      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData,{ withCredentials: true });
+      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData,{ 
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       console.log('Server Response:', response.data);
       setMessage(`Profile updated successfully: ${response.data.fullName}`);
       navigate('/profile')
