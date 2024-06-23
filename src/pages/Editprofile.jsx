@@ -8,21 +8,30 @@ const Editprofile = () => {
   const [avatar, setAvatar] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [message, setMessage] = useState('');
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data ={fullName};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const formData = new FormData();
     formData.append('fullName', fullName);
     formData.append('avatar', avatar);
     formData.append('coverImage', coverImage);
 
+    if (!fullName || !avatar || !coverImage) {
+      enqueueSnackbar('At least one field is required', { variant: 'info' });
+      navigate('/edit');
+      return;
+    }
 
     try {
-      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', data, 
-        {withCredentials: true},
-      );
+      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      });
       console.log('Server Response:', response.data);
       setMessage(`Profile updated successfully: ${response.data.fullName}`);
     } catch (error) {
