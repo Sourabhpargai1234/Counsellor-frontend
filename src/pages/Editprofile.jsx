@@ -1,35 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
 const Editprofile = () => {
   const [fullName, setFullName] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const [message, setMessage] = useState('');
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (event.target.name === 'avatar') {
-      setAvatar(file);
-    } else if (event.target.name === 'coverImage') {
-      setCoverImage(file);
-    }
-  };
+  const { enqueueSnackbar } = useSnackbar()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const data = {fullName, avatar, coverImage};
 
-    const formData = new FormData();
-    formData.append('fullName', fullName);
-    if (avatar) {
-      formData.append('avatar', avatar);
-    }
-    if (coverImage) {
-      formData.append('coverImage', coverImage);
-    }
+    if (!data.fullName || !data.avatar || !data.coverImage) {
+      enqueueSnackbar('Atleast one fields is required', { variant: 'info' });
+      navigate('/edit');
+      return;
+  }
 
     try {
-      const response = await axios.get().post('https://finaltest-api.vercel.app/api/v1/users/edit', formData, {
+      const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -45,7 +38,7 @@ const Editprofile = () => {
   return (
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Edit User Profile</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4">
           <div>
             <label htmlFor="fullName" className="block font-semibold">Full Name:</label>
             <input
@@ -62,7 +55,7 @@ const Editprofile = () => {
               id="avatar"
               type="file"
               name="avatar"
-              onChange={handleFileChange}
+              onChange={(e) => setAvatar(e.target.files[0])}
               className="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
@@ -72,12 +65,13 @@ const Editprofile = () => {
               id="coverImage"
               type="file"
               name="coverImage"
-              onChange={handleFileChange}
+              onChange={(e) => setCoverImage(e.target.files[0])}
               className="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
           <button
             type="submit"
+            onClick={handleSubmit}
             className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
           >
             Submit
