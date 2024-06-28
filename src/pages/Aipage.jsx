@@ -137,7 +137,7 @@ export default function Aipage(){
         </div>
     
                 <div className="p-4 bg-white shadow-md">
-                    <input type="text" id="question2" value={question2} onChange={(e) => setPrompt(e.target.value)} className="w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message..." />
+                    <input type="text" id="question2" value={prompt} onChange={(e) => setPrompt(e.target.value)} className="w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message..." />
                 </div>
                 <button className='w-full border-2 font-bold border-black hover:bg-green-500' onClick={handleClick2}>Ask</button>
                 {loading2 && <p>Thinking...</p>}
