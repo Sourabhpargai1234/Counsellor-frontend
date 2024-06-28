@@ -51,7 +51,7 @@ export default function Aipage(){
       console.log('Sending data:', data);
     
       const response = await axios.post(
-        'https://your-vercel-app.vercel.app/generate-story',
+        'https://google-ai-sdk.vercel.app/generate-story',
         data,
         { withCredentials: true }
       );
