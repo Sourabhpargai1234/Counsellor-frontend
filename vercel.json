@@ -5,8 +5,8 @@
       "destination": "https://finaltest-api.vercel.app/$1"
     },
     {
-        "source": "/api/v1/users/llm",
-        "destination": "https://google-ai-sdk.vercel.app/generate-story"
+      "source": "/generate-story",
+      "destination": "https://google-ai-sdk.vercel.app/generate-story"
     },
     {
       "source": "/(.*)",
