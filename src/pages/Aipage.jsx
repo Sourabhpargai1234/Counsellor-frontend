@@ -45,10 +45,10 @@ export default function Aipage(){
   const handleClick2 = async (e) => {
     e.preventDefault();
     setLoading2(true);
-    const data = { question2 };
+    const prompt = { question2 };
 
     try {
-      console.log('Sending data:', data);
+      console.log('Sending data:', prompt);
     
       const response = await axios.post(
         'https://google-ai-sdk.vercel.app/generate-story',
