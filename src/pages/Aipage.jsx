@@ -9,7 +9,7 @@ export default function Aipage(){
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [question2, setQuestion2] = useState('');
+  const [prompt, setPrompt] = useState('');
   const [userAsked, setUserAsked] = useState('Hi there! I have a question about Career.');
 
   const navigate = useNavigate()
@@ -45,14 +45,14 @@ export default function Aipage(){
   const handleClick2 = async (e) => {
     e.preventDefault();
     setLoading2(true);
-    const Prompt = { question2 };
+    const data = { prompt };
 
     try {
-      console.log('Sending data:', prompt);
+      console.log('Sending data:', data);
     
       const response = await axios.post(
         'https://google-ai-sdk.vercel.app/generate-story',
-        Prompt,
+        data,
         { withCredentials: true }
       );
     
@@ -137,7 +137,7 @@ export default function Aipage(){
         </div>
     
                 <div className="p-4 bg-white shadow-md">
-                    <input type="text" id="question2" value={question2} onChange={(e) => setQuestion2(e.target.value)} className="w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message..." />
+                    <input type="text" id="question2" value={question2} onChange={(e) => setPrompt(e.target.value)} className="w-full rounded-full border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message..." />
                 </div>
                 <button className='w-full border-2 font-bold border-black hover:bg-green-500' onClick={handleClick2}>Ask</button>
                 {loading2 && <p>Thinking...</p>}
