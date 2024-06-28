@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const Editprofile = () => {
   const [fullName, setFullName] = useState('');
@@ -10,6 +11,11 @@ const Editprofile = () => {
   const [message, setMessage] = useState('');
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+
+  const navigateto = (e) => {
+    e.preventDefault();
+    navigate('/');
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +34,7 @@ const Editprofile = () => {
     try {
       const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData, { withCredentials: true});
       console.log('Server Response:', response.data);
+      enqueueSnackbar(`${response.data.statusCode}: ${response.data.message}`, { variant: 'success' });
       setMessage(`Profile updated successfully: ${response.data.fullName}`);
       navigate('/profile')
     } catch (error) {
@@ -38,6 +45,7 @@ const Editprofile = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <span onClick={navigateto} className='float-right cursor-pointer'><IoMdCloseCircleOutline style={{ color: 'gray', fontSize: '50px' }}/></span>
       <h2 className="text-2xl font-bold mb-4">Edit User Profile</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>

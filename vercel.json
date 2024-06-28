@@ -2,7 +2,11 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://finaltest-api.vercel.app"
+      "destination": "https://finaltest-api.vercel.app/$1"
+    },
+    {
+        "source": "/api/v1/users/llm",
+        "destination": "https://google-ai-sdk.vercel.app/generate-story"
     },
     {
       "source": "/(.*)",
@@ -10,4 +14,3 @@
     }
   ]
 }
-

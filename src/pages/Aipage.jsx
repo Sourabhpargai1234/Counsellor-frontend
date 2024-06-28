@@ -49,10 +49,17 @@ export default function Aipage(){
 
     try {
       console.log('Sending data:', data);
-      const response = await axios.post('https://finaltest-api.vercel.app/api/v1/users/llm', data, {credentials: 'include'});
+    
+      const response = await axios.post(
+        'https://your-vercel-app.vercel.app/generate-story',
+        data,
+        { withCredentials: true }
+      );
+    
       console.log('Response:', response);
+    
       setUserAsked(question2);
-      document.getElementById("userasked").innerText="data";
+      document.getElementById("userasked").innerText = question2;
       document.getElementById('question2').innerText = '';
       document.getElementById('aianswered').innerText = response.data;
     } catch (error) {
