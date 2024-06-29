@@ -85,7 +85,7 @@ export default function Aipage(){
             </label>
           <div className="ml-3 text-gray-700 font-medium">Switch between models</div>
           {
-            (isChecked===false) &&
+            (isChecked===true) &&
             (
               <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md md:w-full">
               <h1 className="text-2xl font-bold mb-4">Question Answering System</h1>
