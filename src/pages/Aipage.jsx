@@ -111,7 +111,7 @@ export default function Aipage(){
     
           {
             
-            (isChecked===true) &&
+            (isChecked===false) &&
             (
               <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md md:w-full overflow-y-auto">
         <div className="flex-grow px-4 py-8 flex flex-col-reverse overflow-y-auto">
