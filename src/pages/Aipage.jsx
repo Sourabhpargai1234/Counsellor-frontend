@@ -57,8 +57,8 @@ export default function Aipage(){
       );
     
       console.log('Response:', response);
-    
       setUserAsked(prompt);
+      setPrompt('')
       document.getElementById("userasked").innerText = prompt;
       document.getElementById('question2').innerText = '';
       document.getElementById('aianswered').innerText = response.data.Response;

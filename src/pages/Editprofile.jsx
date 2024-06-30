@@ -34,8 +34,8 @@ const Editprofile = () => {
     try {
       const response = await axios.patch('https://finaltest-api.vercel.app/api/v1/users/edit', formData, { withCredentials: true});
       console.log('Server Response:', response.data);
-      enqueueSnackbar(`${response.data.statusCode}: ${response.data.message}`, { variant: 'success' });
-      setMessage(`Profile updated successfully: ${response.data.fullName}`);
+      enqueueSnackbar('200 Profile Updated Successfully', { variant: 'success' });
+      setMessage(`Update successfull: ${response.data.fullName}`);
       navigate('/profile')
     } catch (error) {
       console.error('Error updating profile:', error.response?.data || error.message);
