@@ -29,6 +29,7 @@ export default function ProfilePage() {
       });
       console.log("Logged out");
       enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'info' });
+      navigate('/');
     } catch (error) {
       console.error("Logout error:", error.response ? error.response.data : error.message);
       enqueueSnackbar("Some internal error occurred", { variant: 'error' });
