@@ -24,15 +24,18 @@ export default function ProfilePage() {
 
   const logout = async () => {
     try {
-      const logout = await axios.post('https://finaltest-api.vercel.app/api/v1/users/logout', {
+      const logout = await axios.post('https://finaltest-api.vercel.app/api/v1/users/logout', {}, {
         withCredentials: true
-      })
+      });
       console.log("Logged out");
       enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'info' });
     } catch (error) {
-      enqueueSnackbar("Some internal error occured", { variant: 'error' });
+      console.error("Logout error:", error.response ? error.response.data : error.message);
+      enqueueSnackbar("Some internal error occurred", { variant: 'error' });
     }
   }
+  
+  
 
   useEffect(() => {
     const fetchUserData = async () => {
