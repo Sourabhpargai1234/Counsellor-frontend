@@ -4,6 +4,7 @@ import { IoMdHome } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 
 export default function ProfilePage() {
@@ -19,6 +20,18 @@ export default function ProfilePage() {
   const toggle = (e) => {
     e.preventDefault();
     navigate('/edit');
+  }
+
+  const logout = async () => {
+    try {
+      const logout = await axios.post('https://finaltest-api.vercel.app/api/v1/users/logout', {
+        withCredentials: true
+      })
+      console.log("Logged out");
+      enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'info' });
+    } catch (error) {
+      enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'error' });
+    }
   }
 
   useEffect(() => {
@@ -50,6 +63,9 @@ export default function ProfilePage() {
         </span>
         <span onClick={toggle} className='float-right cursor-pointer'>
           <FaUserEdit style={{ color: 'gray', fontSize: '50px' }}/>
+        </span>
+        <span onClick={logout} className='float-right cursor-pointer'>
+        <RiLogoutBoxLine style={{ color: 'gray', fontSize: '50px' }}/>
         </span>
       </div>
       {userData ? (

@@ -60,7 +60,6 @@ export default function Aipage(){
       setUserAsked(prompt);
       setPrompt('')
       document.getElementById("userasked").innerText = prompt;
-      document.getElementById('question2').innerText = '';
       document.getElementById('aianswered').innerText = response.data.Response;
     } catch (error) {
       console.error('Error:', error);
