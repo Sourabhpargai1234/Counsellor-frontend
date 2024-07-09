@@ -22,13 +22,14 @@ export default function ProfilePage() {
     navigate('/edit');
   }
 
-  const logout = async () => {
+  const logout = async (e) => {
     try {
       const logout = await axios.post('https://finaltest-api.vercel.app/api/v1/users/logout', {}, {
         withCredentials: true
       });
       console.log("Logged out");
       enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'info' });
+      e.preventDefault();
       navigate('/');
     } catch (error) {
       console.error("Logout error:", error.response ? error.response.data : error.message);
