@@ -30,7 +30,7 @@ export default function ProfilePage() {
       console.log("Logged out");
       enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'info' });
     } catch (error) {
-      enqueueSnackbar(`${logout.data.statusCode} : ${logout.data.message}`, { variant: 'error' });
+      enqueueSnackbar("Some internal error occured", { variant: 'error' });
     }
   }
 
